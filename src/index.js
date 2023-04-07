@@ -22,30 +22,44 @@ function findCountries(event) {
   fetchCountries(countryName).then(createAndShowList);
 }
 
-function createAndShowList(userdata) {
-  if (userdata.length > 10) {
+function createAndShowList(usersdata) {
+  if (usersdata.length > 10) {
     Notiflix.Notify.info(
       `"Too many matches found. Please enter a more specific name."`
     );
+  } else if (usersdata.length <= 10 && usersdata.length >= 2) {
+    const dataMarkup = usersdata
+      .map(userdata => {
+        return `
+  <li><p><img src='${userdata.flags.svg}' height='25px'>${userdata.name.official}</p>
+  </li>
+  `;
+      })
+      .join(' ');
+    ulCountryList.innerHTML = dataMarkup;
+  } else if (usersdata.length === 1) {
+    const singleDataMarkup = usersdata
+      .map(userdata => {
+        return `
+  <li><h2><img src='${userdata.flags.svg}' height='25px'>${userdata.name.official}</h2>
+  <ul>
+  <li><b>Capital:</b> ${userdata.capital}</li>
+  <li><b>Population:</b> ${userdata.population}</li>
+  <li><b>Languages:</b> ${Object.values(userdata.languages)}</li>
+  </ul>
+  </li>
+  `;
+      })
+      .join(' ');
+    ulCountryList.innerHTML = singleDataMarkup;
   }
-  // console.log(userdata[0]);
-  // const template = `
-  // <li><p><img src='${userdata[0].flags.svg}' height='25px'>${userdata[0].name.official}</p>
-  // </li>
-  // `;
-  // ulCountryList.innerHTML = template;
-  // console.log(template);
 }
 
-//   createPromise(position, delays)
-//     .then(({ position, delay }) => {
-//       Notiflix.Notify.success(
-//         `✅ Fulfilled promise ${position} in ${delay}ms`
-//       );
-//     })
-//     .catch(({ position, delay }) => {
-//       Notiflix.Notify.failure(
-//         `❌ Rejected promise ${position} in ${delay}ms`
-//       );
-//     });
+// function createAndShowList(usersdata) {
+//   const template = `
+//   <li><p><img src='${usersdata[0].flags.svg}' height='25px'>${usersdata[0].name.official}</p>
+//   </li>
+//   `;
+//   ulCountryList.innerHTML = template;
+//   console.log(template);
 // }
