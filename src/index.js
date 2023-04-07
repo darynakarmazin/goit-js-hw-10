@@ -4,7 +4,7 @@ import Notiflix from 'notiflix';
 
 import { fetchCountries } from './fetchCountries.js';
 
-const DEBOUNCE_DELAY = 1300;
+const DEBOUNCE_DELAY = 300;
 
 // Використовуй публічний API Rest Countries v2, а саме ресурс name.
 // Content-Type: application/json
