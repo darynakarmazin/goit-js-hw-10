@@ -19,7 +19,7 @@ function findCountries(event) {
   event.preventDefault();
   const countryName = searchbox.value.trim();
 
-  fetchCountries(countryName).then(createAndShowList);
+  fetchCountries(countryName).then(createAndShowList).catch(showError);
 }
 
 function createAndShowList(usersdata) {
@@ -41,7 +41,9 @@ function createAndShowList(usersdata) {
     const singleDataMarkup = usersdata
       .map(userdata => {
         return `
-  <li><h2><img src='${userdata.flags.svg}' height='25px'>${userdata.name.official}</h2>
+  <li><h2><img src='${userdata.flags.svg}' height='25px'>${
+          userdata.name.official
+        }</h2>
   <ul>
   <li><b>Capital:</b> ${userdata.capital}</li>
   <li><b>Population:</b> ${userdata.population}</li>
@@ -51,15 +53,12 @@ function createAndShowList(usersdata) {
   `;
       })
       .join(' ');
-    ulCountryList.innerHTML = singleDataMarkup;
+    divCountryInfo.innerHTML = singleDataMarkup;
   }
 }
 
-// function createAndShowList(usersdata) {
-//   const template = `
-//   <li><p><img src='${usersdata[0].flags.svg}' height='25px'>${usersdata[0].name.official}</p>
-//   </li>
-//   `;
-//   ulCountryList.innerHTML = template;
-//   console.log(template);
-// }
+function showError(error) {
+  Notiflix.Notify.failure('Oops, there is no country with that name');
+  divCountryInfo.innerHTML = ' ';
+  ulCountryList.innerHTML = ' ';
+}
