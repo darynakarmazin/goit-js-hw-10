@@ -28,6 +28,7 @@ function createAndShowList(usersdata) {
       `"Too many matches found. Please enter a more specific name."`
     );
   } else if (usersdata.length <= 10 && usersdata.length >= 2) {
+    divCountryInfo.innerHTML = '';
     const dataMarkup = usersdata
       .map(userdata => {
         return `
@@ -38,10 +39,11 @@ function createAndShowList(usersdata) {
       .join(' ');
     ulCountryList.innerHTML = dataMarkup;
   } else if (usersdata.length === 1) {
+    ulCountryList.innerHTML = '';
     const singleDataMarkup = usersdata
       .map(userdata => {
         return `
-  <li><h2><img src='${userdata.flags.svg}' height='25px'>${
+  <h2><img src='${userdata.flags.svg}' height='25px'>${
           userdata.name.official
         }</h2>
   <ul>
@@ -49,7 +51,6 @@ function createAndShowList(usersdata) {
   <li><b>Population:</b> ${userdata.population}</li>
   <li><b>Languages:</b> ${Object.values(userdata.languages)}</li>
   </ul>
-  </li>
   `;
       })
       .join(' ');
@@ -59,6 +60,6 @@ function createAndShowList(usersdata) {
 
 function showError(error) {
   Notiflix.Notify.failure('Oops, there is no country with that name');
-  divCountryInfo.innerHTML = ' ';
-  ulCountryList.innerHTML = ' ';
+  divCountryInfo.innerHTML = '';
+  ulCountryList.innerHTML = '';
 }
