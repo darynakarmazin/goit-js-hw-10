@@ -19,6 +19,12 @@ function findCountries(event) {
   event.preventDefault();
   const countryName = searchbox.value.trim();
 
+  if (!countryName) {
+    divCountryInfo.innerHTML = '';
+    ulCountryList.innerHTML = '';
+    return;
+  }
+
   fetchCountries(countryName).then(createAndShowList).catch(showError);
 }
 
