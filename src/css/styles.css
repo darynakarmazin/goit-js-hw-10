@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -20,7 +21,7 @@ body {
     ),
     url('https://www.mappr.co/wp-content/uploads/2022/03/world-map-high-definition.jpg');
   background-size: cover;
-  background-size: 110%;
+  background-size: 125%;
 }
 
 #search-box {
