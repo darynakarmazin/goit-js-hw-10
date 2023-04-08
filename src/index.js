@@ -24,6 +24,8 @@ function findCountries(event) {
 
 function createAndShowList(usersdata) {
   if (usersdata.length > 10) {
+    divCountryInfo.innerHTML = '';
+    ulCountryList.innerHTML = '';
     Notiflix.Notify.info(
       `"Too many matches found. Please enter a more specific name."`
     );
