@@ -10,6 +10,8 @@ const divCountryInfo = document.querySelector('.country-info');
 const messageInfo =
   'Too many matches found. Please enter a more specific name.';
 const messageFailure = 'Oops, there is no country with that name';
+const typeFailure = 'failure';
+const typeinfo = 'info';
 
 searchbox.addEventListener('input', debounce(findCountries, DEBOUNCE_DELAY));
 
@@ -28,7 +30,7 @@ function findCountries(event) {
 function createAndShowList(usersdata) {
   if (usersdata.length > 10) {
     clearMarkup();
-    showMessage(info, messageInfo);
+    showMessage(typeinfo, messageInfo);
   } else if (usersdata.length <= 10 && usersdata.length >= 2) {
     clearMarkup();
     dataMarkup(usersdata);
@@ -39,7 +41,7 @@ function createAndShowList(usersdata) {
 }
 
 function showError(error) {
-  showMessage(failure, messageFailure);
+  showMessage(typeFailure, messageFailure);
   clearMarkup();
 }
 
