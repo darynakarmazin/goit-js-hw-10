@@ -54,7 +54,7 @@ function dataMarkup(usersdata) {
   const dataMarkup = usersdata
     .map(userdata => {
       return `
-  <li><p><img src='${userdata.flags.svg}' height='25px'>${userdata.name.official}</p>
+  <li><p><img src='${userdata.flags.svg}' height='25px'>  ${userdata.name.official}</p>
   </li>
   `;
     })
@@ -66,7 +66,7 @@ function singleDataMarkup(usersdata) {
   const singleDataMarkup = usersdata
     .map(userdata => {
       return `
-  <h2><img src='${userdata.flags.svg}' height='25px'>${
+  <h2><img src='${userdata.flags.svg}' height='25px'>  ${
         userdata.name.official
       }</h2>
   <ul>
